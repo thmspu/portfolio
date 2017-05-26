@@ -16,7 +16,7 @@
     "desc": "Online Fruit Shopping Demo",
     "github": "",
     "resource": "",
-    "link": "/booking",
+    "link": "http://ec2-54-237-218-48.compute-1.amazonaws.com:3000/",
     "name": "bookingapp"
   }
 ]
