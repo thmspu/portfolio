@@ -1,0 +1,107 @@
+
+.about {
+    font: 26px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.about p {
+    text-align: center;
+}
+
+.about a {
+    color: #9e0505;
+}
+
+.about a:hover {
+    color: #b85700;
+    text-decoration: none;
+}
+
+.about h2 {
+    color: #23528d;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+    margin-bottom: 50px;
+}
+
+.about .bigtitle {
+    font-family: Papyrus, fantasy;
+    font-size: 60px;
+    color: #23528d;
+}
+
+.about .bigname {
+    font-family: Papyrus, fantasy;
+    font-size: 45px;
+    color: #46b8da;
+}
+
+.about .self-intro p {
+    font-family: "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif;
+    font-size: 20px;
+    text-align: left;
+    color: #5f5964;
+}
+
+.about .self-intro img {
+    height: 20px;
+    width: auto;
+}
+
+.about .contact-link {
+    margin: 20px 20px;
+}
+
+.about .self-mark {
+    font-family: Papyrus, fantasy;
+    color: #2e7db2;
+    font-weight: bold;
+}
+
+.about .self-para {
+    font-family: Papyrus, fantasy;
+    color: #2e7db2;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.degree {
+    position: fixed;
+    left: 20px;
+    bottom: 40px;
+}
+
+.degree p {
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+    color: #2e2e2e;
+    text-align: left;
+}
+
+.degree .deg {
+    color: #5e5e5e;
+}
+
+.degree .school {
+    color: #2e6da4;
+    font-style: italic;
+}
+
+.degree .degimg {
+    float: left;
+}
+
+.degree img {
+    width: 50px;
+    weight: auto;
+}
+
+.degree .notshow {
+    display: none;
+}
+
+.about .contact img {
+    height: 100px;
+    width: auto;
+}
+
+.about .d3demo {
+    font-size: 16px;
+}

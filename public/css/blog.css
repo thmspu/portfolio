@@ -1,0 +1,92 @@
+.blog {
+    font-size: 20px;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+}
+
+.blog h1 {
+    color: #23528d;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+    margin-bottom: 50px;
+}
+
+.blog .intro {
+    color: #666666;
+    font: 17px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-style: italic;
+}
+
+.blog h2 {
+    color: #1b6d85;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.blog h3, .blog h4 {
+    color: #333333;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.blog p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.blog img {
+    display: block;
+    margin: 0 auto;
+}
+
+.blog .imgtitle {
+    text-align: center;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.blog .codetitle {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin-left: 10%;
+}
+
+.blog .mark {
+    color: #204d74;
+    background-color: #dddddd;
+}
+
+.blog .strong {
+    font-weight: bold;
+}
+
+.blog .bigger {
+    font-size: 1.1em;
+}
+
+.blog .blogimage {
+    width: 60%;
+    height: auto;
+}
+.blog ol, .blog ul {
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: #3e3e3e;
+}
+
+.blog li {
+    margin: 8px auto;
+}
+
+.blog a {
+    color: #2e6da4;
+}
+
+.blog a:hover {
+    color: #204d74;
+    text-decoration: none;
+}
+
+.blog pre, .blog code {
+    padding: 0;
+    background-color: #fafafa;
+    border: 0;
+}

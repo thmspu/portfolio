@@ -1,0 +1,75 @@
+.app {
+    margin-bottom: 20px;
+}
+
+.app .spa {
+    border: 1px solid #dadada;
+    border-radius: 15px;
+    padding: 0;
+    height: 150px;
+    overflow: hidden;
+}
+
+.app .spa:hover {
+    box-shadow: 4px 7px 8px #E1E1E1;
+    cursor: pointer;
+}
+
+.app .spaimg {
+    border-radius: 15px;
+}
+
+.spa div {
+    margin: 0;
+    height: 150px;
+    overflow: hidden;
+}
+
+.spa .spaimg img {
+    left: -27%;
+    top: 0;
+    position: absolute;
+    width: auto;
+    height: 100%;
+}
+
+.spa .apptitle {
+    color: #080808;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.spa .appdesc {
+    color: #666666;
+    font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.spa .italic {
+    font-style: italic;
+}
+
+.spa .applink, .spa a {
+    color: #d43f3a;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.spa a:hover {
+    text-decoration: none;
+    color: #c9302c;
+}
+
+.spa p {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+}
+
+.spa p img {
+    width: 20px;
+    height: auto;
+}
+
+.apphead {
+    color: #23528d;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+    margin-bottom: 30px;
+}

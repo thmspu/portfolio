@@ -1,0 +1,50 @@
+<div class = "container-fluid" id="reserve" style="padding-top: 2%">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-1">
+            <strong><h2 style="color:white">Make a free reservation</h2></strong>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 10px">
+        <form class = 'form-inline col-sm-8 col-sm-offset-1'>
+            <select ng-model = "peopleNumber" class="form-control">
+                <option>1 people</option><option>2 people</option><option>3 people</option>
+                <option>4 people</option><option>5 people</option><option>6 people</option>
+                <option>7 people</option><option>8 people</option><option>9 people</option>
+                <option>10 people</option><option>11 people</option><option>12 people</option>
+                <option>13 people</option><option>14 people</option><option>15 people</option>
+                <option>16 people</option><option>17 people</option><option>18 people</option>
+                <option>19 people</option><option>20 people</option>
+            </select>
+            <div class='input-group date'>
+                <input type='text' class="form-control" id='datepicker' ng-model="reserveDate" />
+                <span class="input-group-addon" id="calicon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+            </div>
+            <div class='input-group date col-sm-2'>
+                <input type='text' class="form-control" id='timepicker' ng-model="reserveTime" style="border-radius: 3px" />
+            </div>
+            <a ui-sref = "bookinginfo" style="text-decoration: none; color: #FFFFFF">
+                <button type="button" class="btn btn-danger" ng-click="findTable()">
+                    Find a Table</button>
+            </a>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+        // choose how many people, defautlt 8 people
+        $('select option:nth-child(8)').prop('selected', true);
+
+        // choose booking date MM/DD/YYYY
+        $('#datepicker').datepicker();
+        $('#calicon').click(function(){
+            $('#datepicker').focus();
+        });
+
+        // choose booking time HH/MM AM/PM
+        $('#timepicker').timepicker({'scrollDefault': 'now'});
+
+    });
+</script>

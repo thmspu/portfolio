@@ -1,0 +1,64 @@
+<div class = "container-fluid">
+    <div class="row">
+        <div class="col-sm-8">
+            <strong><h3>You're Almost Done!</h3></strong>
+        </div>
+    </div>
+    <div class="row well">
+        <div class="col-sm-1">
+            <img class="img-rounded img-responsive" src = "/img/cat.jpg" />
+        </div>
+        <div class="col-sm-2">
+            <h5 class="text-info">Guest</h5>
+            <span class="large">{{reserve.num}}</span>
+        </div>
+        <div class="col-sm-2">
+            <h5 class="text-info">Date</h5>
+            <span class="large">{{reserve.dat}}</span>
+        </div>
+        <div class="col-sm-2">
+            <h5 class="text-info">Time</h5>
+            <span class="large">{{reserve.tim}}</span>
+        </div>
+    </div>
+    <div>
+        <div style="margin-bottom: 10px">
+            <span>Already a member?
+                <a style="text-decoration: none; cursor: pointer">Sign in to book faster!</a>
+            </span>
+        </div>
+        <form>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="fname" ng-model="user.firstname" placeholder="First name">
+                </div>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="lname" ng-model="user.lastname" placeholder="Last name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="phone" ng-model="user.phone" placeholder="Phone number">
+                </div>
+                <div class="col-sm-3">
+                    <input type="email" class="form-control" id="email" ng-model="user.email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group row" ng-if="showpassword">
+                <div class="col-sm-3">
+                    <input type="password" class="form-control" id="pwd" ng-model="user.password" placeholder="Enter password">
+                </div>
+                <div class="col-sm-3">
+                    <input type="password" class="form-control" id="repwd" placeholder="Re-enter password">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="checkbox"  ng-model="showpassword" />
+                    <span ng-click="showpassword = !showpassword">Do you want to sign up with this contact?</span>
+                </div>
+            </div>
+            <button type="button" class="btn btn-danger" ng-click="completeReserve(user)">Complete Reservation</button>
+        </form>
+    </div>
+</div>

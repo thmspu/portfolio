@@ -1,0 +1,22 @@
+<div class="container">
+    <h2 class="apphead">Apps</h2>
+</div>
+<div ng-repeat="app in vm.apps track by $index" class="container app">
+    <div class="row spa" move-shadow>
+        <div class="col-sm-2 spaimg">
+            <img ng-src = "{{app.img}}" class="img-rounded">
+        </div>
+        <div class="col-sm-10">
+            <p class="apptitle">{{app.title}}</p>
+            <p class="appdesc">{{app.desc}} &nbsp;&nbsp; <span class="italic">{{app.date}}</span></p>
+            <p class="applink">
+                <img ng-src="/img/link.jpg">
+                <a href="{{app.link}}" target="_blank">
+                    <span ng-if="app.github">Github Link</span>
+                    <span ng-if="app.resource">Project Page</span>
+                    <span ng-if="!app.resource && !app.github">Internal Link</span>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

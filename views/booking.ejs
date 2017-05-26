@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src = "bc/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href = 'bc/jquery-ui/themes/base/jquery-ui.min.css' />
+  <script src = "bc/jquery-ui/jquery-ui.min.js"></script>
+
+  <link rel="stylesheet" href = '/lib/jquery.timepicker.css' />
+  <script src = "/lib/jquery.timepicker.min.js"></script>
+
+  <link rel="stylesheet" href = 'bc/bootstrap/dist/css/bootstrap.min.css' />
+  <script src = 'bc/bootstrap/dist/js/bootstrap.min.js'></script>
+
+  <script src = "bc/angular/angular.min.js"></script>
+  <script src = "bc/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+  <script src = '/js/booking/bookingapp.js'></script>
+  <script src = '/js/booking/homectrl.js'></script>
+
+  <link rel="stylesheet" href = '/css/booking.css' />
+  <base href="/" />
+
+</head>
+<body ng-app = 'bookingapp' class="container-fluid">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="booking">OpenTable</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a ui-sref="booking">Home</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div ui-view>Make a reservation</div>
+</body>
+</html>

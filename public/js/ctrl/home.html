@@ -1,0 +1,37 @@
+<div ng-repeat="blog in vm.blogs track by $index" class="container">
+    <div class="row" ng-if="$odd">
+        <div class="col-sm-4">
+            <img ng-src="{{blog.image}}">
+        </div>
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel panel-heading">
+                    <span class="blog_title"><a ui-sref = "{{blog.name}}">{{blog.title}}</a></span>
+                    <span class="blog_date">{{blog.date}}</span>
+                </div>
+                <div class="panel panel-body">
+                    <p class="blog_desc">{{blog.desc}}...</p>
+                    <p><a ui-sref = "{{blog.name}}">Read More</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="$even">
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel panel-heading">
+                    <span class="blog_title"><a ui-sref = "{{blog.name}}">{{blog.title}}</a></span>
+                    <span class="blog_date">{{blog.date}}</span>
+                </div>
+                <div class="panel panel-body">
+                    <p class="blog_desc">{{blog.desc}}...</p>
+                    <p><a ui-sref = "{{blog.name}}">Read More</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <img ng-src="{{blog.image}}" />
+        </div>
+    </div>
+    <div ng-if="!$last"><hr></div>
+</div>

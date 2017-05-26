@@ -1,0 +1,90 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fefefe;
+  height:100%;
+}
+
+.container hr {
+  color: #fefefe;
+  border: 0;
+}
+
+#nav {
+  background: linear-gradient(to right, #222222, #666666);
+}
+
+a {
+  color: #BBBBBB;
+  text-decoration: none;
+}
+
+a:active, a:hover, a:visited {
+  text-decoration: none;
+}
+
+#nav a {
+  font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+  font-size: 18px;
+  color: #f9f9f9;
+}
+
+#nav a:hover {
+  color: #66afe9;
+}
+
+.panel a {
+  color: #d43f3a;
+}
+
+.panel a:hover {
+  color: #FF0000;
+  text-decoration: none;
+}
+
+#view{
+  margin-top: 100px;
+}
+
+.row .col-sm-4 img {
+  width: 100%;
+  height: auto;
+}
+
+.panel {
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fcfcfc;
+  border: 0;
+}
+
+.panel-heading .panel-body {
+  background-color: #fcfcfc;
+  border: 0;
+}
+
+.blog_title {
+  font-family: Verdana, Geneva, sans-serif;
+  color: #2e6da4;
+}
+
+.blog_date {
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  color: #777777;
+  float: right;
+}
+
+.blog_desc {
+  font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+  font-size: 20px;
+}
+
+footer {
+  background-color: #333333;
+  text-align: center;
+  position:fixed;
+  bottom:0px;
+  padding-top: 12px;
+  height:40px;
+  width:100%;
+  font-size: 11px;
+  color: #AFAFAF;
+}

@@ -1,0 +1,253 @@
+<div class="about container row">
+    <div class="col-sm-7">
+        <p class="bigname">John Pu</p>
+        <div class="row">
+            <div class="col-sm-4">
+                <img class="img-rounded" ng-src="/img/coder.jpg">
+            </div>
+            <div class="col-sm-8 self-intro">
+                <p class="contact-link">
+                    <img ng-src = "/img/github.jpg"><a href="https://github.com/thmspu" target="_blank">Github</a>
+                </p>
+                <p>I am a professional <span class="self-mark">Full Stack</span> developer.</p>
+                <p>In work, I use <span class="self-mark">Angular</span> and <span class="self-mark">React</span> to develop UI.</p>
+                <p>And I use <span class="self-mark">Spring</span> and <span class="self-mark">Hibernate</span> for server side.</p>
+                <p>At spare time, I love coding on <span class="self-mark">LeetCode</span>.</p>
+                <p>I found a secret:</p>
+                <p><span class="self-para">I am really good at Algorithm.</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5 contact">
+        <div class="d3demo"></div>
+    </div>
+</div>
+<div>
+    <p><br><br></p>
+</div>
+<div class="container degree" degree-img>
+    <div class="row">
+        <div class="col-md-1 degimg">
+            <img ng-src="/img/degree.jpg">
+        </div>
+        <div class="col-sm-11 degreediv notshow">
+            <p><span class="deg">Master Degree of Computer Engineering</span> from <span class="school">New Jersey Institute of Technology</span>, 2016</p>
+            <p><span class="deg">Bachelor Degree of Mechanical Engineering</span> from <span class="school">NUAA</span>, 2015</p>
+        </div>
+    </div>
+</div>
+<div>
+    <p><br></p>
+</div>
+<script>
+    var width = 630,
+            height = 450,
+            radius = Math.min(width, height) / 1.6,
+            spacing = .09;
+
+    var formatSecond = d3.time.format("%-S seconds"),
+            formatMinute = d3.time.format("%-M minutes"),
+            formatHour = d3.time.format("%-H hours"),
+            formatDay = d3.time.format("%A"),
+            formatDate = function(d) { d = d.getDate(); switch (10 <= d && d <= 19 ? 10 : d % 10) { case 1: d += "st"; break; case 2: d += "nd"; break; case 3: d += "rd"; break; default: d += "th"; break; } return d; },
+            formatMonth = d3.time.format("%B");
+
+    var color = d3.scale.linear()
+            .range(["hsl(-180,60%,50%)", "hsl(180,60%,50%)"])
+            .interpolate(function(a, b) { var i = d3.interpolateString(a, b); return function(t) { return d3.hsl(i(t)); }; });
+
+    var arcBody = d3.svg.arc()
+            .startAngle(0)
+            .endAngle(function(d) { return d.value * 2 * Math.PI; })
+            .innerRadius(function(d) { return d.index * radius; })
+            .outerRadius(function(d) { return (d.index + spacing) * radius; })
+            .cornerRadius(6);
+
+    var arcCenter = d3.svg.arc()
+            .startAngle(0)
+            .endAngle(function(d) { return d.value * 2 * Math.PI; })
+            .innerRadius(function(d) { return (d.index + spacing / 2) * radius; })
+            .outerRadius(function(d) { return (d.index + spacing / 2) * radius; });
+
+    var svg = d3.select(".d3demo").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var field = svg.selectAll("g")
+            .data(fields)
+            .enter().append("g");
+
+    field.append("path")
+            .attr("class", "arc-body");
+
+    field.append("path")
+            .attr("id", function(d, i) { return "arc-center-" + i; })
+            .attr("class", "arc-center");
+
+    field.append("text")
+            .attr("dy", ".35em")
+            .attr("dx", ".75em")
+            .style("text-anchor", "start")
+            .append("textPath")
+            .attr("startOffset", "50%")
+            .attr("class", "arc-text")
+            .attr("xlink:href", function(d, i) { return "#arc-center-" + i; });
+
+    tick();
+
+    d3.select(self.frameElement).style("height", height + "px");
+
+    function tick() {
+        if (!document.hidden) field
+                .each(function(d) { this._value = d.value; })
+                .data(fields)
+                .each(function(d) { d.previousValue = this._value; })
+                .transition()
+                .ease("elastic")
+                .duration(500)
+                .each(fieldTransition);
+
+        setTimeout(tick, 1000 - Date.now() % 1000);
+    }
+
+    function fieldTransition() {
+        var field = d3.select(this).transition();
+
+        field.select(".arc-body")
+                .attrTween("d", arcTween(arcBody))
+                .style("fill", function(d) { return color(d.value); });
+
+        field.select(".arc-center")
+                .attrTween("d", arcTween(arcCenter));
+
+        field.select(".arc-text")
+                .text(function(d) { return d.text; });
+    }
+
+    function arcTween(arc) {
+        return function(d) {
+            var i = d3.interpolateNumber(d.previousValue, d.value);
+            return function(t) {
+                d.value = i(t);
+                return arc(d);
+            };
+        };
+    }
+
+    function fields() {
+        var now = new Date;
+        return [
+            {index: .7, text: formatSecond(now), value: now.getSeconds() / 60},
+            {index: .6, text: formatMinute(now), value: now.getMinutes() / 60},
+            {index: .5, text: formatHour(now),   value: now.getHours() / 24},
+            {index: .3, text: formatDay(now),    value: now.getDay() / 7},
+            {index: .2, text: formatDate(now),   value: (now.getDate() - 1) / (32 - new Date(now.getYear(), now.getMonth(), 32).getDate())},
+            {index: .1, text: formatMonth(now),  value: now.getMonth() / 12}
+        ];
+    }
+
+</script>
+<!--<script>
+
+    var width = 500, height = 380,
+            outerRadius = Math.min(width, height) * .5 - 10,
+            innerRadius = outerRadius * .6;
+
+    var n = 10,
+            data0 = d3.range(n).map(Math.random),
+            data1 = d3.range(n).map(Math.random),
+            data;
+
+    var color = d3.scale.category20();
+
+    var arc = d3.svg.arc();
+
+    var pie = d3.layout.pie()
+            .sort(null);
+
+    var svg = d3.select(".d3demo").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+    svg.selectAll(".arc")
+            .data(arcs(data0, data1))
+            .enter().append("g")
+            .attr("class", "arc")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+            .append("path")
+            .attr("fill", function(d, i) { return color(i); })
+            .attr("d", arc);
+
+    transition(1);
+
+    function arcs(data0, data1) {
+        var arcs0 = pie(data0),
+                arcs1 = pie(data1),
+                i = -1,
+                arc;
+        while (++i < n) {
+            arc = arcs0[i];
+            arc.innerRadius = innerRadius;
+            arc.outerRadius = outerRadius;
+            arc.next = arcs1[i];
+        }
+        return arcs0;
+    }
+
+    function transition(state) {
+        var path = d3.selectAll(".arc > path")
+                .data(state ? arcs(data0, data1) : arcs(data1, data0));
+
+        // Wedges split into two rings.
+        var t0 = path.transition()
+                .duration(1000)
+                .attrTween("d", tweenArc(function(d, i) {
+                    return {
+                        innerRadius: i & 1 ? innerRadius : (innerRadius + outerRadius) / 2,
+                        outerRadius: i & 1 ? (innerRadius + outerRadius) / 2 : outerRadius
+                    };
+                }));
+
+        // Wedges translate to be centered on their final position.
+        var t1 = t0.transition()
+                .attrTween("d", tweenArc(function(d, i) {
+                    var a0 = d.next.startAngle + d.next.endAngle,
+                            a1 = d.startAngle - d.endAngle;
+                    return {
+                        startAngle: (a0 + a1) / 2,
+                        endAngle: (a0 - a1) / 2
+                    };
+                }));
+
+        // Wedges then update their values, changing size.
+        var t2 = t1.transition()
+                .attrTween("d", tweenArc(function(d, i) {
+                    return {
+                        startAngle: d.next.startAngle,
+                        endAngle: d.next.endAngle
+                    };
+                }));
+
+        // Wedges reunite into a single ring.
+        var t3 = t2.transition()
+                .attrTween("d", tweenArc(function(d, i) {
+                    return {
+                        innerRadius: innerRadius,
+                        outerRadius: outerRadius
+                    };
+                }));
+
+        setTimeout(function() { transition(!state); }, 5000);
+    }
+
+    function tweenArc(b) {
+        return function(a, i) {
+            var d = b.call(this, a, i), i = d3.interpolate(a, d);
+            for (var k in d) a[k] = d[k]; // update data
+            return function(t) { return arc(i(t)); };
+        };
+    }
+
+</script>-->

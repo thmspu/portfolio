@@ -1,0 +1,452 @@
+<div class="container blog">
+    <h1 class="text-center">Angular 2 vs. Angular 1: Key Differences</h1>
+    <div class="container intro">
+        <p>
+            Recently, the Developer Preview of Angular 2 was released.
+            This has some essential changes compared to Angular 1.
+            Angular 2 is written entirely in <span class="mark">Typescript</span> and meets the <span class="mark">ECMAScript 6</span> specification.
+            Although one can’t build an entire application with it, because some specifications have not been implemented yet
+            or are still subject to change, the new way of thinking already becomes clear.
+        </p>
+        <p>
+            Angular 2 will be a big change for developers compared to 1.x.
+            Component-based development and object orientation are much easier, which I'll explain later.
+            Other functionalities such as scopes and controllers are canceled completely.
+        </p>
+    </div>
+    <div class="container">
+        <img class="blogimage" ng-src="/img/blog/b1_title.jpg" >
+    </div>
+    <div class="container">
+        <h2>Component-Based</h2>
+        <p>
+            Angular 2 is entirely component based.
+            Controllers and $scope are no longer used.
+            They have been replaced by components and directives.
+            Components are directives with a template. The following code snippet, Listing 1,
+            shows how a component is built. This component is in HTML called with the &lt;angularComponent&gt; tag,
+            the name of the selector within the HTML.
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    import {Component, View, bootstrap} from 'angular2/angular2';
+
+    @Component ({
+        selector: 'angularConponent'
+    })
+    @View ({
+        templateUrl: 'component.html'
+    })
+
+    class AngularComponent {
+        constructor(){
+            //code
+        }
+    }
+
+    bootstrap(AngularComponent);
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">Listing 1</p>
+        <p>All of the components that are used must be made known via bootstrap. They also have to be imported on the page.</p>
+    </div>
+    <div class="container">
+        <h2>Directives</h2>
+        <p>
+            The specification for directives is considerably simplified,
+            although they are still subject to change. With the @Directive annotation,
+            a directive can be declared. This is shown in Listing 2.
+            This is a limited set of possibilities. In the block 'host listeners',
+            standard functions can be linked to their own implementations.
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    import {Directive} from 'angular2/angular2';
+
+    @Directive({selector: '[hover]',
+        properties: ['text: hover'],
+        hostListeners: {
+            'onmouseenter': 'onMouseEnter()',
+            'onmouseleave': 'onMouseLeave()'
+        }
+    })
+
+    export class Hover {
+        constructor() {
+            console.debug("constructed");
+        }
+        set text(value: string) {
+            console.debug(value);
+        }
+    }
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">Listing 2</p>
+        <p>
+            Directives can also be used in components,
+            this applies both to its own directives as predefined directives.
+            For example, the "NgFor" and "hover" directive in a component can be used.
+            These will be imported initially and then made known within the @View.
+        </p>
+    </div>
+    <div class="container">
+        <h2>Dependency Injection</h2>
+        <p>
+            Because of the improved dependency injection model in Angular2
+            there are more opportunities for component / object-based work.
+            The dependency injection consists of 3 parts.
+            The <span class="mark">Injector</span>, which contains the APIs to inject the dependencies and make dependency injection available.
+            Bindings make it possible for dependencies to be named.
+            Finally the actual dependencies of the object are generated so they can be injected.
+        </p>
+        <p>
+            At the moment, an object is passed into the constructor of the component,
+            this only needs to be passed through the injector view, as shown in Listing 3.
+            The objects that are enclosed in the square brackets can then be used to inject.
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    @Component({
+        selector: 'my-app',
+        viewInjector: [MessageList, httpInjectables]
+    })
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">Listing 3</p>
+        <p>
+            Some extra annotations have been added which can enhance the possibilities of dependency injection,
+            for example the <span class="mark">@InjectPromise</span> annotation. With this annotation asynchronicity can be achieved,
+            and the object is only injected as it actually has been created. At this moment a specific Promise object will be injected.
+            With the @optional annotation, an optional value or library can be injected.
+        </p>
+        <p>An example of dependency injection is the following declaration:</p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    constructor(messageList:MessageList) {}
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p>
+            A special application of dependency injection is HTTP.
+            Through the use of the httpInjectables, which exist in the angular/http package,
+            a HTTP object can be injected. On this object, REST operations can be performed.
+            For the example, a public test server with a REST response has been used. It can be called like this:
+        </p>
+        <p>
+            <span class="mark">http.get('http://jsonplaceholder.typicode.com/posts/1')</span>
+        </p>
+    </div>
+    <div class="container">
+        <h2>What is TypeScript and What are the Benefits of ECMAScript 6</h2>
+        <p>
+            EcmaScript 6 has  classes, a typical example of a class is (Listing 4):
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    class Person {
+        name: string;
+
+        constructor(name:string){
+            this.name=name;
+        }
+    }
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">
+            Listing 4
+        </p>
+        <p>
+            In previous versions of ECMAScript, everything was still defined by a prototype.
+            Now classes are defined and it makes it almost as readable as Java code.
+            ECMAScript 6 also has full inheritance. With super (parameters) to the constructor of the parent is called.
+            Furthermore, static variables can be declared.
+        </p>
+        <p>
+            TypeScript is an extension of ECMAScript, in fact:
+        </p>
+        <p class="imgtitle strong bigger">
+            TypeScript = ES6 + Types + Annotations
+        </p>
+        <p>
+            TypeScript is actually from Microsoft, which means the new Angular is also likely to be popular for .NET developers.
+            TypeScript is a form of JavaScript which knows types and classes and  can be compiled to JavaScript.
+            It is open source. TypeScript includes many aspects of object orientation such as inheritance and interfaces.
+            It also has generics and lambdas.
+        </p>
+        <p>
+            Because Angular2 uses TypeScript, the functionality of TypeScript itself and its libraries can be used.
+            Angular is just a framework which couples different features. Other libraries can easily be used.
+            For example, you can use the MongoDB interface because it already has a connector in TypeScript.
+        </p>
+        <p>
+            WebSockets is another feature that is not directly something from Angular2,
+            but it can easily be implemented and support has been added to the specification.
+            We can define a WebSocket like this:
+        </p>
+        <p>
+            <span class="mark">var socket = new WebSocket ("ws: // localhost: 3000);</span>
+        </p>
+        <p>
+            On the socket we can receive messages by defining an <span class="mark">onMessage()</span> function.
+            We can also emit changes. If we build a WebSocket server we can get real-time changes.
+        </p>
+        <p>
+            TypeScript will not be used in the browser. The program code is compiled to JavaScript.
+            This can be achieved with “Traceur”. Because the JavaScript ECMAScript 6 specification
+            has also needed an additional plug-in to be used because the browsers are not yet suitable for this purpose.
+        </p>
+    </div>
+    <div class="container">
+        <h2>Generics</h2>
+        <p>
+            TypeScript has generics which can be used in the frontend. As an example uses a Male and Female
+            class which are both derived from Person (Listing 5). Both can prepare Food, however, the result is different.
+            One only seems to be able to prepare raw food and the other can make delicious food.
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    export class Person {
+        prepareFood(){return new Food("what to prepare")}
+    }
+
+    export class Food {
+        typeOfFood: string;
+        constructor(typeOfFood){
+            this.typeOfFood=typeOfFood;
+        }
+    }
+
+    export class Female extends Person {
+        prepareFood(){return new Food("yummie")}
+    }
+
+    export class Male extends Person {
+        prepareFood(){return new Food("raw")}
+    }
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">
+            Listing 5
+        </p>
+        <p>
+            In Angular, every class or directive that is used in a component that must first be imported in the
+            component before it can actually be used. In listing 6, the NgFor directive has been imported to use all classes for the generics.
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
+    import {Person, Male, Female, Food} from 'person';
+
+    @Component ({
+        selector: 'food-preparation'
+    })
+    @View ({
+        templateUrl: 'food.html',
+        directives:[NgFor]
+    })
+
+    class FoodPreparationComponent {
+        foods: Array<String>;
+
+        constructor(){
+            this.foods=[];
+            this.foods.push(prepareFood(new Male()));
+            this.foods.push(prepareFood(new Female()));
+        }
+    }
+
+    function prepareFood<T extends Person>(cooker: T): string {
+        return cooker.prepareFood().typeOfFood;
+    }
+
+    bootstrap(FoodPreparationComponent);
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">
+            Listing 6
+        </p>
+        <p>
+            The "foods" list is now displayable with Angular, the following piece of HTML has been used:
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    &lt;p&gt;Dishes:&lt;/p&gt;
+    &lt;ul>
+        &lt;li *ngFor="#food of foods"&gt;
+            {food}
+        &lt;/li&gt;
+    &lt;/ul&gt;
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">
+            Listing 7
+        </p>
+        <p>
+            The browser then displays a list. This example is relatively simple, later when we discus Forms
+            we will see more advanced options will be possible.
+        </p>
+    </div>
+    <div class="container">
+        <h2>Lambdas with TypeScript</h2>
+        <p>
+            In TypeScript, lambdas are available. The following piece of code makes of every string in
+            messageStrings a new message with this string as content. The string is than pushed in the messages list.
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    pushMessage(...messageStrings:Array<String>) {
+        this.message.push(
+            ...messageStrings.map((m)=>{
+                return new Message(m, new Date(), "Sender name");
+            })
+        );
+    }
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">
+            Listing 8
+        </p>
+        <p>
+            Another application of lambdas is the HTTP GET. Http get supplies a not-directly-usable object, b
+            ut a RxJS subject. With help of the toRx() method, we can transform it to an Observable.
+            After this we can subscribe to this observable by using the .subscribe. Every change can now be mapped.
+        </p>
+        <img ng-src = "/img/blog/b1_listing8a.jpg">
+    </div>
+    <div class="container">
+        <h2>Forms and Validations</h2>
+        <p>
+            Forms and validations are an important aspect of frontend development. Within Angular 2 the
+            Form Builder and Control Group are defined. The Control Group consists of a list of Control.
+            Listing 9 shows how two fields are added to the Control Group. Each addition is a Control
+            and as could be written as new Control();
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    class OrderComp {
+        orderForm: ControlGroup;
+
+        constructor(Builder: FormBuilder) {
+            this.orderForm = builder.group({
+                name: ['', Validators.required],
+                antal: ['', Validators.required]
+            });
+        }
+    }
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">
+            Listing 9
+        </p>
+        <p>
+            The empty field is the initial value, but this can of course also use a value from the database.
+            Next, this can be called in the HTML like this.
+        </p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+<pre>
+<code class="javascript">
+    &lt;form [ng-form-model]="orderForm"&gt;
+        name: &lt;input control="name"&gt;
+        antal: &lt;input control="antal"&gt;
+    &lt;/form&gt;
+</code>
+</pre>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <p class="codetitle">
+            Listing 10
+        </p>
+        <p>
+            Now we can access the errors of each control like this, "&lt;&lt;this.orderForm.controls.naam.errors &gt;&gt;”.
+        </p>
+        <p>
+            We can also define ControlGroups within ControlGroups, this allows validation of fields on Form level, on validation is on Form level as being a control group, the next nesting contains the actual controls.  This validations can then be invoked with “&lt;&lt;this.orderForm.errors&gt;&gt;".
+        </p>
+        <p>
+            Each Control or validation can have its own implementation.  This makes it possible to build your own library with personal functions and controls. Reuse will be easy to achieve.  Combined with generics and inheritance it is possible to define a date which uses a rule with generics. Now with inheritance and different types of rules it’s possible to define a pallet of controls. For example, the generic rule is the date is the right size, the line added with generics, the date must be at least 18 years in the past.
+        </p>
+        <p>
+            Also the Forms and Controls still undergo changes and it is expected that more standard operations will be included.
+        </p>
+    </div>
+    <div class="container">
+        <h2>More Possible</h2>
+        <p>
+            At this moment, not all specifications are fully implemented and are still changing. The direction is very clear, but at this moment, a minor release could cause a failure in your code.
+        </p>
+        <p>
+            It’s a big step forward that the frontend is now completely made of components and directives and can use all the features from other JavaScript libraries. Is it easy to communicate with the database and make use of WebSockets. It has also become a better way to create directives and components that are very easy to integrate with other frameworks. It is no longer a typical JavaScript framework, it is compiled to JavaScript, but in fact, every language may be used if it can be compiled to JavaScript.
+        </p>
+        <p>
+            The combination of Angular2 with TypeScript provides a big opportunity in object oriented programming in the frontend. The declarative nature makes it much clearer.
+        </p>
+        <p>
+            All of this looks very promising and probably will change the way we develop frontends. We probably need to wait until all frontend implementations are finished.
+        </p>
+    </div>
+    <div>
+        <p><br><br><br><br><br><br></p>
+    </div>
+</div>

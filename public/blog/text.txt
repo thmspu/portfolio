@@ -1,0 +1,215 @@
+At the time of writing, it becomes more and more difficult for beginners to choose a JavaScript framework to use for their project, or even to start learning. Every day, we hear new systems, approaches, and tools to make things easier. Some tools bundle, minify, abstract, hide, log, debug, and interact more directly to the DOM. Each one has their uses, but they also contribute to the JavaScript fatigue — the (too) many tools in the JavaScript world only make learning and using it feel more complicated than it should.
+
+React vs Angular 2: Comparison scope
+This article aims to provide you some insight into JavaScript by comparing React and Angular 2; two of the most popular JavaScript frameworks today (you can read past comparisons between React and Angular 1; and React and Angular performance comparison). I will try to take you to a short but discerning journey to help make an informed decision when deciding which of the two you should learn or use for your project. React and Angular 2 will be compared based on the following:
+
+The concepts
+Setting up
+Learning
+1. The concepts
+Let's begin with the basics...
+
+A. Angular2
+
+Watchers: Watchers are attached to each component and each time a component is changed, watchers check if we should modify something else; and if needed, make appropriate modifications. The Angular 2 team did a great job to make that part way faster than its previous version. So from now on, each time a component is changed, we don’t have to run any verifications on objects (depending on immutable elements).
+
+There is another striking point in using Angular 2: it requires TypeScript. But we will talk about this again…
+
+B. React
+
+Facebook’s baby is more like a UI component render than a full framework. The big thing (that everyone is talking about) is the virtual DOM. This is a killer feature which is giving React three main advantages:
+
+The changes occur by comparison between the DOM and the virtual DOM only, so React will only change what’s needed in the most optimal way.
+We don’t really need a browser to test React as we don’t interact directly with the DOM.
+We can connect the Virtual DOM to another entity (look at the mobile developments made in native code or Electron)
+Components created in React have a state (representing the component-related data) and updating this state will allow your page to be reactive.
+
+Imagine creating a “counter” component — the thing that you will likely want to change is the value of that counter, it will then be the state of our counter component.
+
+2. Setting up
+One of the key factors to choose a framework today are the tools we have to learn to fully understand and utilize it well. As we already have a lot (Docker, Git, Rails, Django, Node.js, .NET) that can help us in deploying, versioning, providing servers, and for APIs — there’s only too much we can learn. And this can especially feel overwhelming for beginners.
+
+But it’s no question that we will invest so much time using it, so let’s look at the overall learning difficulty of these two frameworks.
+
+First, say hello!
+
+At first, a very naive approach — let’s learn how to say hello in both of these systems (with the prerequisite of already having Node.js and npm installed).
+
+A. Angular2:
+I went to the quickstart guide on Angular’s website: https://angular.io/docs/ts/latest/quickstart.html
+
+From the website, copy-paste these four configuration files in your application folder:
+
+package.json identifies npm package dependencies for the project.
+tsconfig.json defines how the TypeScript compiler generates JavaScript from the project’s files.
+typings.json provides additional definition files for libraries that the Typecript compiler doesn’t natively recognize.
+systemjs.config.js provides information to a module loader about where to find application modules, and registers all the necessary packages. It also contains other packages that will be needed by later documentation examples.
+Then install the dependencies and create the root module:
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+@NgModule({
+imports: [BrowserModule]
+})
+export class AppModule { }
+Theoretically, this step is enough to provide us a working app, but as it is doing nothing, it’s not really fun at the moment… Let’s take one another step.
+
+Let’s add a component to our app — a component in charge of displaying a nice welcome message to anyone executing the app.
+
+import { Component } from '@angular/core';
+@Component({
+selector: 'my-app',
+template: '<h1>Welcome everyone!!</h1>'
+})
+
+export class AppComponent { }
+In addition, we need to slightly change our app.module.ts file as we need to reference our brand new AppComponent. We also need to tell Angular to start our application (in a new main.ts file).
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app.module';
+const platform = platformBrowserDynamic();
+platform.bootstrapModule(AppModule);
+Add some style and provide the adapted index.html file (again, just copy-paste the one found on the Angular guide), and you can run it in the first terminal where you find:
+
+~/projects/angulartest$ npm start
+At this point, we already used some TypeScript (and compared to Vanila JS, it provides a better code organization, typing, and annotations; but this is another thing to learn when you get into Angular 2).
+
+Done!
+
+react vs angular 2
+
+You now have a nice first page that will change whenever you make changes in your module (the start command launches both the server and a watcher).
+
+B. React:
+Again, let’s proceed like any newbie would do at the beginning — let’s start at the installation guide: https://facebook.github.io/react/docs/installation.html
+
+React has a slightly different approach. Here, you can install a package that will create a very simple working app for you.
+
+The only thing you have to do is to install the package, create an application with the command provided, and start the server.
+
+npm install -g create-react-app
+create-react-app hello-world
+cd hello-world
+npm start
+And with just those first commands, we have this result:
+
+react vs angular 2
+
+Now that we got React started, they’ll first recommend using bundlers. If you are not familiar with how it works and what it does, I just recommend you to go the Webpack’s homepage or read this getting started tutorial.
+
+react vs angular 2
+
+In other words, you turn a bunch of small files with a lot of relationships and connections into bigger, “reunited” files. The main point is that it can be interpreted then by the browsers, even when minified. With such tools, you will be able to bundle all react components to make sure all the dependencies are resolved.
+
+Webpack and Browserify (just to mention some) are of course useful, and you will need to choose which one you want to use in your React project. If you’re interested in using Browserify, you can check out this guide. It can be difficult to know at first how and what we need to work properly with React but it can be learned through more use.
+
+Verdict:
+
+From what we have discussed until now, I must admit that I prefer Angular 2’s way to get started. It is a little longer for sure, but it’s easier to have an idea of what we need to setup, and how components are interacting.
+
+react vs angular 2
+
+3. Learning
+Let’s breathe a little after those long descriptions and let’s try to make informed opinions out of it. We previously focused on setting up for initial use of Angular 2 and React, and it is a key factor in knowing which UI framework/library to use and learn. Let’s go through other key factors and bring other considerations to the table to see how the two compare.
+
+A. Practice
+
+But in the long run, it is actually a little easier to think in React. Angular 2 is, of course, an efficient framework — but my personal preference goes with React for clarity. Coding with Flux has a lot to do with it and states a very simple workflow to follow.
+
+Moreover, working in JSX makes things more readable and would have the effects you plan it to have. One of the most criticized aspects of Angular is that a newcomer has to learn a lot of new directives and keywords, notoriously all the ng-* friends. This issue has been tackled a lot by the Angular team as they continue to improve the framework. This Q&A with Google’s Angular Core Team might help users understand Angular 2’s features more.
+
+
+
+But one of the big differences between Angular and React is the way they consider HTML and JS.
+
+Angular puts JS in HTML whereas React puts HTML into JavaScript. Some would say that is a matter of taste, but I find it more convenient to handle JS from the beginning to the end, and just to show you, here is how things look like in these two systems:
+
+Here is a list in Angular 2:
+
+<ul>
+    <li *ngFor="let item of items; let i = index">
+        {{i}} {{item}}
+    </li>
+</ul>
+Here is the same in React:
+
+let List = function({ items }) {
+return (
+<ul>
+    {items.map(item =>
+    <li key={item.id}>{item.name}</li>
+    )}
+</ul>
+);
+}
+You have real and actual JavaScript code inside the braces, and the function used to render the component is clear — any developer who is used to JS won’t get lost. But then again, it’s all just a matter of personal preference.
+
+Verdict:
+
+react vs angular 2
+
+B. Difficulty
+
+The use of TypeScript is better from a “strictness” perspective, and not from a “learning” perspective, as you will find yourself learning Angular and TypeScript at the same time. So, you will really find it more difficult to climb that wall at the beginning. But after flexing your muscles, you will walk better. Note that nothing prevents you from not using TypeScript, but most of the examples that you will find on the web for Angular will be in TS.
+
+Verdict:
+
+react vs angular 2
+
+C. Community
+
+In terms of community and popularity, both frameworks can now rely on a huge developer base all over the world — and both still continue to grow fast.
+
+A quick look at Stackoverflow and stats of Github repos show, however, that React is more popular at the moment, but it should not be a huge deciding factor for beginners, as both communities are really active.
+
+Here are the figures for React (https://github.com/facebook/react/stargazers):
+
+react vs angular 2
+
+Here are the figures for Angular (https://github.com/angular/angular/stargazers):
+
+react vs angular 2
+
+As you can see, both are really popular, even if React seems to get more and more people getting to know and experimenting with it.
+
+Verdict:
+
+react vs angular 2
+
+D. Debugging
+
+React’s “magic” is about the update of DOM (and how it is changed from the virtual DOM), other than that, there’s not a lot of notable advantages, especially if you are using Flux (but we will get back to that in a while). In Angular, because you have watchers everywhere, debugging can be a little challenging on its own. But we have to be fair with Angular: providing true HTML templates can make HTML debugging easier. But I guess it depends on the projects you are working on.
+
+Let’s talk about Flux for a moment so I can show you why I would say that debugging components in React is really not that painful.
+
+As Facebook wanted a unidirectional data flow, they came up with a specific way to organize the key files and functionalities of components to make them readable, self-explanatory, and easy to debug.
+
+react vs angular 2
+
+When there is a change in the app (someone presses a button, clicks on a link, etc.), views send some actions to a dispatcher. (Ex: Someone clicked on the “plus one” button of a counter, it should then go from 9 to 10. The view sends an action to the dispatcher called “INCREMENT”)
+The dispatcher sends the action off to all the stores registered to it. Each store is responsible for taking and executing this action or not. (Ex: As the dispatcher, I send the “INCREMENT” action to all the listening stores.)
+The store in question changes the state of the component and notifies the controller view. (Ex: The “Counter” store updates the state from 9 to 10 and makes the controller view know)
+Child views of the view controller are updated. (Ex: We really see the 9 switching to 10 in our counter component)
+It makes building a component ridiculously easy (once you’ve done one, you just follow the same pattern over and over) and allows you to trigger the step to incriminate when the whole chain has a problem. It is unidirectional, clean, and simple. To debug with such an architecture becomes smooth and quick.
+
+Verdict:
+
+react vs angular 2
+
+E. Speed
+
+Before talking about performances, we should talk a little about how the two handle binding. On one side, Angular 2 uses two-way data binding. This means that if I decide to change the value in the DOM, say an input field or a text area, both the view and the model will be updated. This behavior is made possible by a lot of observers. Each binding requires a watcher; so the bigger your app is getting, the bigger the impact of those watchers is also going to be.
+
+On the other side with React, we have to write the code that handles tracking the changes between view and models. But once it is done (and even though you might feel that implementing something like Flux is going to slow down your app), the components stay very fast as we only change the elements that are changed in the DOM (thanks to the virtual DOM of React, only the virtual DOM elements that have difference with the actual DOM elements are updated). The result is that updates are made in a smoother way.
+
+To make it a bit more precise, please check this link, as you will get true benchmarks on the performances of both Angular 2 and React (among others, which is always good to see).
+
+Verdict:
+
+react vs angular 2
+
+In conclusion
+Don’t be shy. Try React and Angular 2 to make your own choice! But I hope this comparison could help you decide (if you need to pick one) for your project, and that you could better understand the environments of these frameworks on your journey to becoming an expert developer.
+
+There is no clear good or bad guy here, both Angular 2 and React are complete products, with strong communities and teams behind them.
